@@ -22,7 +22,8 @@ const express = require('express'),
 // app.use(morgan('dev'));
 
     app.use('/business', businessRoute);
-    const port =  4000;
+
+    const port = process.env.port;
 
     const server = app.listen(port, function(){
      console.log('Listening on  ' + port);
