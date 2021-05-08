@@ -7,14 +7,22 @@ let Business = require('../models/Business');
 
 // Defined store route
 businessRoutes.route('/add').post(function (req, res) {
+  console.log(req.body, 'req, res');
   let business = new Business(req.body);
-  business.save()
-    .then(business => {
-      res.status(200).json({'business': 'business in added successfully'});
-    })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
+  // business.save()
+  //   .then(business => {
+  //     res.status(200).json({'business': 'business in added successfully'});
+  //   })
+  //   .catch(err => {
+  //   res.status(400).send("unable to save to database");
+  //   });
+  business.save(function (err, savedJob) {
+    if (err) {
+      return res.send(err);
+    } else {
+       return res.send(savedJob);
+    }
+  })
 });
 
 // Defined get data(index or listing) route

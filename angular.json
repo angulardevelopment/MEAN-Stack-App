@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "mean-app"
+  "defaultProject": "mean-app",
+  "cli": {
+    "analytics": "77c937dc-a654-4e81-a068-da2065f80b1d"
+  }
 }
