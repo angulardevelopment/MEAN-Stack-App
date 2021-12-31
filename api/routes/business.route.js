@@ -1,14 +1,17 @@
 const express = require('express');
 const app = express();
 const businessRoutes = express.Router();
+const path = require('path');
+
 
 // Require Business model in our routes module
 let Business = require('../models/Business');
 
-// Defined store route
+// Defined store route // To create a new route 
 businessRoutes.route('/add').post(function (req, res) {
-  console.log(req.body, 'req, res');
+  console.log(req.body,'add');
   let business = new Business(req.body);
+
   // business.save()
   //   .then(business => {
   //     res.status(200).json({'business': 'business in added successfully'});
@@ -16,17 +19,19 @@ businessRoutes.route('/add').post(function (req, res) {
   //   .catch(err => {
   //   res.status(400).send("unable to save to database");
   //   });
+
   business.save(function (err, savedJob) {
     if (err) {
-      return res.send(err);
+      return  res.status(400).send("unable to save to database" + err);
     } else {
-       return res.send(savedJob);
+       return res.status(200).json({'business': 'business in added successfully'});
     }
   })
 });
 
 // Defined get data(index or listing) route
 businessRoutes.route('/').get(function (req, res) {
+  console.log('get');
     Business.find(function (err, businesses){
     if(err){
       console.log(err);
@@ -72,5 +77,25 @@ businessRoutes.route('/delete/:id').get(function (req, res) {
         else res.json('Successfully removed');
     });
 });
+
+
+businessRoutes.route('/addbusiness').get(function(req,res){
+  res.sendFile(path.join(__dirname,'../public/add-business.html'));  // back out one level first:
+});
+
+// // This responds to a GET request for abcd, abxcd, ab123cd, and so on
+
+// app.get('/ab*cd', function (req, res) {  
+//     console.log("Got a GET request for /ab*cd");
+//     res.send('Page Pattern Match');
+// })
+
+// // This response to a DELETE request for the /del_user page.
+
+// app.delete('/del_user', function (req, res) { 
+//     console.log("Got a DELETE request for /del_user");
+//     res.send('Hello DELETE');
+// })
+
 
 module.exports = businessRoutes;
