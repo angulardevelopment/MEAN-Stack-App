@@ -28,7 +28,6 @@ export class GstAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ghxfg');
     
   }
 

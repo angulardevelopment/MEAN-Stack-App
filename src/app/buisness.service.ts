@@ -22,8 +22,7 @@ export class BuisnessService {
   }
 
   getBusinesses() {
-    console.log('hi');
-    
+  
     return this
            .http
            .get(`${this.uri}`);
