@@ -11,7 +11,12 @@ let Business = new Schema({
   },
   business_gst_number: {
     type: Number
-  }
+  },
+
+  _ownerId:{
+    type: mongoose.Types.ObjectId,
+    required: true
+    }
 },{
     collection: 'business'
 });

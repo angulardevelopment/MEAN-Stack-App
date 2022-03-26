@@ -9,7 +9,6 @@ let Business = require('../models/Business');
 
 // Defined store route // To create a new route 
 businessRoutes.route('/add').post(function (req, res) {
-  console.log(req.body,'add');
   let business = new Business(req.body);
 
   // business.save()
@@ -31,7 +30,7 @@ businessRoutes.route('/add').post(function (req, res) {
 
 // Defined get data(index or listing) route
 businessRoutes.route('/').get(function (req, res) {
-  console.log('get');
+;
     Business.find(function (err, businesses){
     if(err){
       console.log(err);
@@ -83,6 +82,43 @@ businessRoutes.route('/addbusiness').get(function(req,res){
   res.sendFile(path.join(__dirname,'../public/add-business.html'));  // back out one level first:
 });
 
+
+businessRoutes.route('/addbusiness/:ownerId/owner').post((req, res) =>{
+  (new Business ({ 'person_name': req.body.person_name, 'business_name': req.body.business_name, '_ownerId' : req.params.ownerId }))
+  .save()
+  .then((student) => res.send(student))
+  .catch((error) => console.log(error))
+  })
+
+
+  businessRoutes.route('/myclass/:myclassId/students').get((req, res) =>{
+    Business.find({ _classId: req.params.myclassId })
+    .then((student) => res.send(student))
+    .catch((error) => console.log(error))
+    })
+
+    businessRoutes.route('/myclass/:myclassId/students/:studentId').get((req, res) =>{
+      Business.findOne({ _classId: req.params.myclassId, _id: req.params.studentId })
+      .then((onestudent) => res.send(onestudent))
+      .catch((error) => console.log(error))
+      })
+
+      app.patch('/myclass/:myclassId/students/:studentId', (req, res) => {
+        student.findOneAndUpdate({ '_id': req.params.myclassId, _id: req.params.studentId }, { $set: req.body })
+        .then((student) => res.send(student))
+        .catch((error) => console.log(error))
+        })  
+
+        app.delete('/myclass/:myclassId', (req, res) =>{
+          const deleteStudents = (myclass) =>{
+          student.deleteMany({ '_id': req.params.myclassId})
+          .then(() => myclass)
+          .catch((error) => console.log(error))
+          }
+          myclass.findByIdAndDelete( { '_id': req.params.myclassId})
+          .then((myclass) => res.send(deleteStudents(myclass)))
+          .catch((error) => console.log(error))
+          })
 // // This responds to a GET request for abcd, abxcd, ab123cd, and so on
 
 // app.get('/ab*cd', function (req, res) {  
