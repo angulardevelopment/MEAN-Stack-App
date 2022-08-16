@@ -7,7 +7,6 @@ const path = require('path');
 // Require Business model in our routes module
 let Business = require('../models/Business');
 
-// Defined store route // To create a new route 
 businessRoutes.route('/add').post(function (req, res) {
   let business = new Business(req.body);
 

@@ -1,7 +1,7 @@
 const express = require("express"),
   path = require("path"),
   cors = require("cors"),
-  mongoose = require("mongoose"),  // Mongoose is used to connect to MongoDB, define the database schema and read/write data. 
+  mongoose = require("mongoose"),   
   bodyParser = require("body-parser");
 
 config = require("./DB");
@@ -51,6 +51,10 @@ app.use(
 );
 
 app.use(cors());
+
+// to solve express server cors error- 
+//   app.options('*', cors());
+
 // app.use(morgan('dev'));
 
 // // Angular DIST output folder
@@ -66,3 +70,5 @@ const port = process.env.port || 4000; // You can specify any available port ove
 const server = app.listen(port, function () {
   console.log("Listening on  " + port);
 });
+
+
