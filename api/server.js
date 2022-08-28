@@ -3,7 +3,7 @@ const express = require("express"),
   cors = require("cors"),
   mongoose = require("mongoose"),   
   bodyParser = require("body-parser");
-
+  logger  = require('morgan');
 config = require("./DB");
 
 //  API file for interacting with MongoDB
@@ -30,7 +30,6 @@ mongoose
       console.log("Can not connect to the database" + err);
     }
   );
-// var morgan = require('morgan');
 
 const app = express();
 app.use(bodyParser.json());
@@ -42,20 +41,24 @@ app.use(bodyParser.json());
 //   "X-Requested-With", "Content-Type", "Accept")
 //   next()
 //   })
+  app.use(cors());
+  // var corsOptions = {
+  //   origin: "http://localhost:8081"
+  // };
+  // app.use(cors(corsOptions));
+  app.options('*', cors()); // to solve express server cors error
 
 // post express node js input, send form data(Html input data) to apis
+// parse requests of content-type - application/x-www-form-urlencoded
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
+// parse requests of content-type - application/json
+// app.use(express.json());
 
-app.use(cors());
-
-// to solve express server cors error- 
-//   app.options('*', cors());
-
-// app.use(morgan('dev'));
+app.use(logger('dev'));  // Some other presets available are combined, common, short, tiny
 
 // // Angular DIST output folder
 // app.use(express.static(path.join(__dirname, 'dist')));
@@ -63,7 +66,6 @@ app.use(cors());
 // API location
 app.use("/business", businessRoute);
 app.use("/owner", ownerRoute);
-
 
 const port = process.env.port || 4000; // You can specify any available port over here.
 

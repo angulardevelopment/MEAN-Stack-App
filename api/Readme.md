@@ -1,23 +1,20 @@
 
 
 node server.js
-
-
- cd api
  npm run start
-
-api-
- http://localhost:4000/business  GET
- http://localhost:4000/business/add  POST 
-
- http://localhost:4000/owner/  GET
-  http://localhost:4000/owner/addOwner/  POST 
-
-html pages-
- http://localhost:4000/business/addbusiness
+ node mongo-demo.js
+npm install express mongoose cors --save
 
 
 
-
+Methods	Urls	Actions
+GET	api/tutorials	get all Tutorials
+GET	api/tutorials/:id	get Tutorial by id
+POST	api/tutorials	add new Tutorial
+PUT	api/tutorials/:id	update Tutorial by id
+DELETE	api/tutorials/:id	remove Tutorial by id
+DELETE	api/tutorials	remove all Tutorials
+GET	api/tutorials/published	find all published Tutorials
+GET	api/tutorials?title=[kw]	find all Tutorials which title contains 'kw'
 
  
