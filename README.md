@@ -20,7 +20,8 @@ I'm Sam, and I'm passionate about product engineering and web development. I cre
 
 
 ### About the app
-Implemented Basic CRUD operations.
+Implemented Basic CRUD operations. Backend available here on this link
+[Node App](https://github.com/NodeJSEngineering/MEAN-Stack-App-BE)
 
 ## Subscribe and Stay Updated!
 
