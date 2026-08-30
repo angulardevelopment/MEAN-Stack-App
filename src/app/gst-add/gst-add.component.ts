@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BuisnessService } from '../buisness.service';
 
 @Component({
-  selector: 'app-gst-add',
-  templateUrl: './gst-add.component.html',
-  styleUrls: ['./gst-add.component.css']
+    selector: 'app-gst-add',
+    templateUrl: './gst-add.component.html',
+    styleUrls: ['./gst-add.component.css'],
+    imports: [FormsModule, ReactiveFormsModule]
 })
 export class GstAddComponent implements OnInit {
 

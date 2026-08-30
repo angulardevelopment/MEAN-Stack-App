@@ -22,10 +22,9 @@ export class BuisnessService {
   }
 
   getBusinesses() {
-  
     return this
            .http
-           .get(`${this.uri}`);
+           .get<any>(`${this.uri}`);
   }
 
   editBusiness(id) {

@@ -8,8 +8,8 @@ describe('GstEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GstEditComponent ]
-    })
+    imports: [GstEditComponent]
+})
     .compileComponents();
   }));
 

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BuisnessService } from '../buisness.service';
 
 @Component({
-  selector: 'app-gst-edit',
-  templateUrl: './gst-edit.component.html',
-  styleUrls: ['./gst-edit.component.css']
+    selector: 'app-gst-edit',
+    templateUrl: './gst-edit.component.html',
+    styleUrls: ['./gst-edit.component.css'],
+    imports: [FormsModule, ReactiveFormsModule]
 })
 export class GstEditComponent implements OnInit {
 
